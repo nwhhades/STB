@@ -60,9 +60,9 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                tasks.named("generateMetadataFileForReleasePublication").configure {
-                    dependsOn("bundleDebugAar")
-                }
+//                tasks.named("generateMetadataFileForReleasePublication").configure {
+//                    dependsOn("bundleDebugAar")
+//                }
                 //组包名
                 groupId = groupIdStr
                 //依赖库名称
