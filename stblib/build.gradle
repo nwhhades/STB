@@ -7,9 +7,10 @@ def groupIdStr = "com.whiner.stblib"
 def artifactIdStr = "common"
 def versionStr = "1.0"
 
-task androidSourcesJar(type: Jar) {
-    archiveClassifier.set('sources')
+//打包源码任务
+task generateSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
 }
 
 android {
@@ -65,8 +66,6 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-
-                artifact androidSourcesJar
                 //组包名
                 groupId = groupIdStr
                 //依赖库名称
