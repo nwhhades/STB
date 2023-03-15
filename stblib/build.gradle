@@ -5,7 +5,7 @@ plugins {
 
 def groupIdStr = "com.whiner.stblib"
 def artifactIdStr = "common"
-def versionStr = "1.0"
+def versionStr = "2.0"
 
 android {
     namespace 'com.whiner.stblib'
@@ -60,9 +60,10 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-//                tasks.named("generateMetadataFileForReleasePublication").configure {
-//                    dependsOn("bundleDebugAar")
-//                }
+                //#fit Execution optimizations have been disabled for task
+                tasks.named("generateMetadataFileForReleasePublication").configure {
+                    dependsOn("bundleDebugAar")
+                }
                 //组包名
                 groupId = groupIdStr
                 //依赖库名称
