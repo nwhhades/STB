@@ -7,6 +7,11 @@ def groupIdStr = "com.whiner.stblib"
 def artifactIdStr = "common"
 def versionStr = "1.0"
 
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
 android {
     namespace 'com.whiner.stblib'
     compileSdk 33
@@ -41,9 +46,7 @@ android {
     }
 
     publishing {
-        singleVariant("release"){
-            withSourcesJar()
-        }
+        singleVariant("release")
     }
 
     //配置这个并不是让你隐藏过时api，而是让过时api或者不合规矩的语法展现出来
@@ -62,6 +65,8 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
+
+                artifact androidSourcesJar
                 //组包名
                 groupId = groupIdStr
                 //依赖库名称
