@@ -39,6 +39,7 @@ public class DownloadNetFileUtils {
         String tag = onListener.toString();
         int list_size = list.size();
         int index = netFile.getIndex();
+        onListener.setCanceled(false);
         EasyHttp.download(lifecycleOwner)
                 .tag(tag)
                 .method(HttpMethod.GET)

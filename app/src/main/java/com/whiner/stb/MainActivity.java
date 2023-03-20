@@ -3,7 +3,14 @@ package com.whiner.stb;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
+import com.blankj.utilcode.util.AppUtils;
+import com.hjq.permissions.OnPermissionCallback;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 import com.whiner.stb.databinding.ActivityMainBinding;
+import com.whiner.stb.down.DownActivity;
 import com.whiner.stblib.base.BaseActivity;
 import com.whiner.stblib.net.DownloadNetFileUtils;
 import com.whiner.stblib.net.NetFile;
@@ -40,6 +47,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
     protected void init() {
+
         binding.btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,11 +59,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             @Override
             public void onClick(View v) {
                 //hideLoadingView();
-                stopDown();
+                //stopDown();
+                DownActivity.start(MainActivity.this);
             }
         });
-
-
     }
 
     private String tag;
@@ -70,6 +77,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         @Override
         public void onEnd(List<NetFile> list) {
             Log.d(TAG, "onEnd: " + list);
+            NetFile netFile = list.get(0);
+            AppUtils.installApp(netFile.getFilePath());
         }
 
         @Override

@@ -25,15 +25,12 @@ public abstract class BaseApplication extends Application {
         super.onCreate();
         Utils.init(this);
         initToaster();
-        initPermissions();
         UrlUtils.INSTANCE.setImpl(initUrlUtilsImpl());
         initHttp();
         init();
     }
 
     protected abstract void init();
-
-    protected abstract void initPermissions();
 
     protected abstract UrlUtils.Impl initUrlUtilsImpl();
 
