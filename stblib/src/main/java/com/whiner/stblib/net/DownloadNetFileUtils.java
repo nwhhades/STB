@@ -89,8 +89,9 @@ public class DownloadNetFileUtils {
         return tag;
     }
 
-    public static void cancel(String tag, OnListener onListener) {
+    public static void cancel(@NonNull OnListener onListener) {
         onListener.setCanceled(true);
+        String tag = onListener.toString();
         EasyHttp.cancel(tag);
     }
 

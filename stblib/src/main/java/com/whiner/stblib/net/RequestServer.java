@@ -6,7 +6,7 @@ import com.hjq.http.config.IRequestServer;
 
 public class RequestServer implements IRequestServer {
 
-    private static String BASE_URL = "http://www.baidu.com";
+    private static String BASE_URL = "http://www.baidu.com/";
 
     @NonNull
     @Override

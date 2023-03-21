@@ -19,7 +19,7 @@ public abstract class BaseApi<T> implements IRequestApi, IRequestCache {
 
     private static final String TAG = "BaseApi";
 
-    public void get(@NonNull NetBaseActivity<?> netBaseActivity, @Nullable OnHttpListener<T> listener, @Nullable String tag, long delay) {
+    public void get(@NonNull NetBaseActivity<?> netBaseActivity, @Nullable OnHttpListener<NetResult<T>> listener, @Nullable String tag, long delay) {
         GetRequest request = EasyHttp.get(netBaseActivity);
         request.api(this);
         if (tag != null) {
@@ -47,16 +47,16 @@ public abstract class BaseApi<T> implements IRequestApi, IRequestCache {
             @Override
             public void onSucceed(NetResult<T> result, boolean cache) {
                 super.onSucceed(result, cache);
-                Log.d(TAG, "onSucceed: " + result.toString());
                 if (cache) {
                     Log.e(TAG, "onSucceed: 使用了缓存");
                 }
+                Log.d(TAG, "onSucceed: " + result.toString());
             }
 
             @Override
             public void onFail(Exception e) {
-                Log.e(TAG, "onFail: 请求失败", e);
                 super.onFail(e);
+                Log.e(TAG, "onFail: 请求失败", e);
             }
 
         });

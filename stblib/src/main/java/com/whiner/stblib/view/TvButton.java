@@ -45,7 +45,7 @@ public class TvButton extends AppCompatTextView implements View.OnFocusChangeLis
             if (hasFocus) {
                 animate().scaleX(1.1f).scaleY(1.1f).start();
             } else {
-                animate().scaleX(1.01f).scaleY(1.01f).setDuration(10).start();
+                animate().scaleX(1f).scaleY(1f).setDuration(10).start();
             }
         }
         if (onFocusChangeListener != null) {

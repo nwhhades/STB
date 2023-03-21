@@ -179,7 +179,7 @@ public abstract class BaseActivity<V extends ViewBinding> extends AppCompatActiv
 
     @Override
     public Resources getResources() {
-        return AdaptScreenUtils.adaptWidth(super.getResources(), 1920);
+        return AdaptScreenUtils.adaptWidth(super.getResources(), 3840);
     }
 
     @Override

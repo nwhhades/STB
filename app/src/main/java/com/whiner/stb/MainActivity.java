@@ -8,19 +8,26 @@ import androidx.annotation.NonNull;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
+import com.bumptech.glide.Glide;
+import com.hjq.http.listener.OnHttpListener;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
 import com.whiner.stb.databinding.ActivityMainBinding;
 import com.whiner.stb.down.DownActivity;
+import com.whiner.stb.net.SetApi;
+import com.whiner.stb.net.SettingsBean;
 import com.whiner.stblib.base.BaseActivity;
+import com.whiner.stblib.base.NetBaseActivity;
 import com.whiner.stblib.net.DownloadNetFileUtils;
 import com.whiner.stblib.net.NetFile;
+import com.whiner.stblib.net.NetResult;
+import com.whiner.stblib.net.RequestServer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> {
+public class MainActivity extends NetBaseActivity<ActivityMainBinding> {
 
 
     private static final String TAG = "MainActivity";
@@ -50,7 +57,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     protected void init() {
 
-
         LogUtils.d(ScreenUtils.getScreenWidth() + " - " + ScreenUtils.getScreenHeight());
 
         binding.btn1.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +71,23 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             public void onClick(View v) {
                 //hideLoadingView();
                 //stopDown();
-                DownActivity.start(MainActivity.this);
+                //DownActivity.start(MainActivity.this);
+
+                RequestServer.setBaseUrl("http://101.133.235.5:8686/");
+
+                SetApi setApi = new SetApi();
+                setApi.get(MainActivity.this, new OnHttpListener<NetResult<SettingsBean>>() {
+                    @Override
+                    public void onSucceed(NetResult<SettingsBean> result) {
+
+                    }
+
+                    @Override
+                    public void onFail(Exception e) {
+
+                    }
+                },null,0);
+
             }
         });
     }
@@ -103,6 +125,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     };
 
     private void initDown() {
+        DownloadNetFileUtils.cancel(onDownListener);
+
         NetFile netFile1 = new NetFile();
         netFile1.setIndex(0);
         netFile1.setName("MT2.13.2.apk");
@@ -130,7 +154,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     }
 
     private void stopDown() {
-        DownloadNetFileUtils.cancel(tag, onDownListener);
+        DownloadNetFileUtils.cancel(onDownListener);
     }
 
 

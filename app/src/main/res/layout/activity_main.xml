@@ -6,26 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
+    <com.whiner.stblib.view.TvButton
         android:id="@+id/btn1"
+        android:layout_margin="300pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_btn1"
-        android:focusableInTouchMode="true"
+        android:theme="@style/TvButton"
         android:text="Hello World!"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <com.whiner.stblib.view.TvButton
         android:id="@+id/btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200pt"
-        android:background="@drawable/bg_btn1"
-        android:focusableInTouchMode="true"
-        android:text="Hello World!"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="400pt"
+        android:theme="@style/TvButton"
+        app:layout_constraintStart_toEndOf="@id/btn1"
+        app:layout_constraintTop_toTopOf="@id/btn1" />
 
     <ImageView
         android:layout_width="800pt"
@@ -37,5 +35,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="192pt"
+        android:layout_height="202pt"
+        android:src="@drawable/apps"
+        android:scaleType="fitXY"
+        android:layout_margin="60pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
