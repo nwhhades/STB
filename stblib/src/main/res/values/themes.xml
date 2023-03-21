@@ -7,6 +7,11 @@
         <item name="android:background">@drawable/bg_gray_card</item>
     </style>
 
+    <style name="HorizontalProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/focus_focused</item>
+    </style>
+
     <style name="TvSeekBar" parent="Widget.AppCompat.SeekBar">
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlActivated">@color/focus_checked</item>
@@ -19,4 +24,14 @@
         <item name="colorControlActivated">@color/focus_focused</item>
         <item name="colorControlHighlight">@color/focus_checked</item>
     </style>
+
+    <style name="TvButton">
+        <item name="android:paddingStart">50dip</item>
+        <item name="android:paddingEnd">50dip</item>
+        <item name="android:paddingTop">10dip</item>
+        <item name="android:paddingBottom">10dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/bg_btn1</item>
+    </style>
+
 </resources>

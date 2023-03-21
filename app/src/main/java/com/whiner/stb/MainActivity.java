@@ -6,6 +6,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
@@ -47,6 +49,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
     protected void init() {
+
+
+        LogUtils.d(ScreenUtils.getScreenWidth() + " - " + ScreenUtils.getScreenHeight());
 
         binding.btn1.setOnClickListener(new View.OnClickListener() {
             @Override
