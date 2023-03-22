@@ -61,8 +61,8 @@ public class MainActivity extends NetBaseActivity<ActivityMainBinding> {
     protected void init() {
 
         binding.tvvVod.create();
-        binding.tvvVod.setTitle("是顶顶顶");
-        binding.tvvVod.play("http://vfx.mtime.cn/Video/2019/03/14/mp4/190314223540373995.mp4",false);
+        binding.tvvVod.setTitle("顶顶顶");
+        binding.tvvVod.play("http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225619/index.m3u8",false);
 
 
 

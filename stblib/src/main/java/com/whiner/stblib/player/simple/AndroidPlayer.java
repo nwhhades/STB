@@ -28,52 +28,51 @@ public class AndroidPlayer extends BasePlayerView {
 
     @Override
     public void addListener() {
-        if (mView == null) {
-            return;
+        if (mView != null) {
+
+            mView.setOnErrorListener((mp, what, extra) -> {
+                setErrState(new Exception("err :" + extra));
+                return true;
+            });
+            mView.setOnPreparedListener(mp -> {
+                mMediaPlayer = mp;
+                setPlaySate(PlayState.STATE_PREPARED);
+            });
+            mView.setOnCompletionListener(mp -> {
+                mp.seekTo(0);
+                if (mLooping) {
+                    mp.start();
+                } else {
+                    setCompletion();
+                }
+            });
+            mView.setOnInfoListener((mp, what, extra) -> {
+                switch (what) {
+                    case MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START:
+                        setPlaySate(PlayState.STATE_PLAYING);
+                        break;
+                    case MediaPlayer.MEDIA_INFO_BUFFERING_START:
+                        setPlaySate(PlayState.STATE_BUFFERING);
+                        break;
+                    case MediaPlayer.MEDIA_INFO_BUFFERING_END:
+                        setPlaySate(PlayState.STATE_BUFFERED);
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            });
         }
-        mView.setOnErrorListener((mp, what, extra) -> {
-            setErrState(new Exception("err :" + extra));
-            return true;
-        });
-        mView.setOnPreparedListener(mp -> {
-            mMediaPlayer = mp;
-            setPlaySate(PlayState.STATE_PREPARED);
-        });
-        mView.setOnCompletionListener(mp -> {
-            mp.seekTo(0);
-            if (mLooping) {
-                mp.start();
-            } else {
-                setCompletion();
-            }
-        });
-        mView.setOnInfoListener((mp, what, extra) -> {
-            switch (what) {
-                case MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START:
-                    setPlaySate(PlayState.STATE_PLAYING);
-                    break;
-                case MediaPlayer.MEDIA_INFO_BUFFERING_START:
-                    setPlaySate(PlayState.STATE_BUFFERING);
-                    break;
-                case MediaPlayer.MEDIA_INFO_BUFFERING_END:
-                    setPlaySate(PlayState.STATE_BUFFERED);
-                    break;
-                default:
-                    break;
-            }
-            return true;
-        });
     }
 
     @Override
     public void delListener() {
-        if (mView == null) {
-            return;
+        if (mView != null) {
+            mView.setOnErrorListener((mp, what, extra) -> true);
+            mView.setOnPreparedListener(null);
+            mView.setOnCompletionListener(null);
+            mView.setOnInfoListener(null);
         }
-        mView.setOnErrorListener((mp, what, extra) -> true);
-        mView.setOnPreparedListener(null);
-        mView.setOnCompletionListener(null);
-        mView.setOnInfoListener(null);
     }
 
     @Override

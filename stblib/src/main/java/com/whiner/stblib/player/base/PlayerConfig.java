@@ -9,12 +9,16 @@ import java.util.List;
 public enum PlayerConfig {
     INSTANCE;
 
+
+    PlayerConfig() {
+        list.add(new AndroidPlayerFactory());
+    }
+
     private static final String TAG = "PlayerConfig";
     private final List<IPlayerViewFactory<?>> list = new ArrayList<>();
     private IPlayerViewFactory<?> mFactory = null;
 
     public void init() {
-        list.add(new AndroidPlayerFactory());
         mFactory = (IPlayerViewFactory<?>) CacheDiskUtils.getInstance().getSerializable(TAG, list.get(0));
     }
 
@@ -34,8 +38,14 @@ public enum PlayerConfig {
     }
 
     public int getCurPlayerIndex() {
+        int i = 0;
         if (mFactory != null) {
-            return list.indexOf(mFactory);
+            for (IPlayerViewFactory<?> item : list) {
+                if (item.getFactoryName().equalsIgnoreCase(mFactory.getFactoryName())) {
+                    return i;
+                }
+                i++;
+            }
         }
         return 0;
     }
