@@ -23,6 +23,9 @@ import com.whiner.stblib.net.DownloadNetFileUtils;
 import com.whiner.stblib.net.NetFile;
 import com.whiner.stblib.net.NetResult;
 import com.whiner.stblib.net.RequestServer;
+import com.whiner.stblib.weather.OnWeatherListener;
+import com.whiner.stblib.weather.WeatherBean;
+import com.whiner.stblib.weather.tianqi.TianqiFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -158,4 +161,22 @@ public class MainActivity extends NetBaseActivity<ActivityMainBinding> {
     }
 
 
+    private final TianqiFactory tianqiFactory = new TianqiFactory();
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tianqiFactory.getData(new OnWeatherListener() {
+            @Override
+            public void onWeather(WeatherBean bean) {
+                Log.d(TAG, "onWeather: " + bean);
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        tianqiFactory.stopGet();
+    }
 }
