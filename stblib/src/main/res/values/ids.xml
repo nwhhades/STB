@@ -14,4 +14,7 @@
     <item name="btn4" type="id" />
     <item name="btn5" type="id" />
     <item name="btn6" type="id" />
+
+    <item name="pb_loading" type="id" />
+    <item name="tv_title" type="id" />
 </resources>

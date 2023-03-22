@@ -7,6 +7,7 @@ import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
 import com.whiner.stblib.base.BaseApplication;
 import com.whiner.stblib.net.UrlUtils;
+import com.whiner.stblib.player.base.PlayerConfig;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class App extends BaseApplication {
 
     @Override
     protected void init() {
-
+        PlayerConfig.INSTANCE.init();
     }
 
     @Override

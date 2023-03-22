@@ -57,6 +57,9 @@ public class TianqiFactory implements WeatherFactory {
     }
 
     private static int getResIDByStr(String str) {
+        if (str == null) {
+            return R.drawable.ic_weather_err;
+        }
         int icon;
         switch (str) {
             case "xue":

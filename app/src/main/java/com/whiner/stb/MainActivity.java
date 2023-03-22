@@ -60,6 +60,14 @@ public class MainActivity extends NetBaseActivity<ActivityMainBinding> {
     @Override
     protected void init() {
 
+        binding.tvvVod.create();
+        binding.tvvVod.setTitle("是顶顶顶");
+        binding.tvvVod.play("http://vfx.mtime.cn/Video/2019/03/14/mp4/190314223540373995.mp4",false);
+
+
+
+
+
         LogUtils.d(ScreenUtils.getScreenWidth() + " - " + ScreenUtils.getScreenHeight());
 
         binding.btn1.setOnClickListener(new View.OnClickListener() {
